@@ -1,11 +1,12 @@
 <?php
-
 namespace OpenClassrooms\Blog\Model;
 
 require_once("model/Manager.php");
 
 class PostManager extends Manager
 {
+
+    // Récupère tout les posts
     public function getPosts()
     {
         $db = $this->dbConnect();
@@ -14,6 +15,7 @@ class PostManager extends Manager
         return $req;
     }
 
+    // Récupère un post
     public function getPost($postId)
     {
         $db = $this->dbConnect();

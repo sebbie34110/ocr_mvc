@@ -1,5 +1,4 @@
 <?php
-
 namespace OpenClassrooms\Blog\Model;
 
 use PDO, Exception, PDOException;
@@ -8,6 +7,7 @@ require_once("model/Manager.php");
 
 class CommentManager extends Manager
 {
+    // Récupère les commentaires d'un post
     public function getComments($postId)
     {
         $db = $this->dbConnect();
@@ -18,6 +18,7 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    // Récupère un commentaire
     public function getCommentById($commentId)
     {
         $db = $this->dbConnect();
@@ -34,6 +35,7 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    // Ajoute un commentaire
     public function postComment($postId, $author, $comment)
     {
         $db = $this->dbConnect();
@@ -43,7 +45,8 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function makeCommentUpdate($commentId, $Comment)
+    // Modifie un commentaire
+    public function makeCommentUpdate($commentId, $comment)
     {
       $db = $this->dbConnect();
       $sql = 'UPDATE comments SET comment = ? WHERE comments.id = ?';

@@ -1,14 +1,13 @@
 <?php
-
 use \OpenClassrooms\Blog\Model\PostManager;
 use \OpenClassrooms\Blog\Model\CommentManager;
-
 
 
 // Chargement des classes
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
+// Affiche tous les posts
 function listPosts()
 {
     $postManager = new PostManager();
@@ -17,6 +16,8 @@ function listPosts()
     require('view/frontend/listPostsView.php');
 }
 
+
+// Affiche un post et ses commentaires
 function post()
 {
     $postManager = new PostManager();
@@ -28,6 +29,8 @@ function post()
     require('view/frontend/postView.php');
 }
 
+
+// Ajoute un commentaire
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
@@ -42,16 +45,19 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function Update(){
-  $id = (int)$_GET['id'];
-  $c_id = (int)$_GET['c_id'];
+// Affiche la page de modification d'un commentaire
+function Update()
+{
+  $postId = (int)$_GET['id'];
+  $commentId = (int)$_GET['c_id'];
 
   $commentManager = new CommentManager();
-  $comment = $commentManager->getCommentById($c_id);
+  $comment = $commentManager->getCommentById($commentId);
 
   require('view/frontend/updateComment.php');
 }
 
+// Fait la modification du commentaire
 function updateComment(int $commentId, string $newComment)
 {
   $commentManager = new CommentManager();
